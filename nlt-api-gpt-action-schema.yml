@@ -1,0 +1,78 @@
+openapi: 3.1.0
+info:
+  title: Fetch NLT passages
+  description: Retrieves NLT passages for a given query.
+  version: v1.0.0
+servers:
+  - url: https://api.nlt.to/api
+paths:
+  /passages:
+    get:
+      description: Get passages for a specific reference
+      operationId: GetPassages
+      parameters:
+        - name: ref
+          in: query
+          description: The references to retrieve the passages for
+          required: true
+          schema:
+            type: string
+          default: Romans 8:28-30
+        - name: key
+          in: query
+          description: The API key to use for the request
+          required: true
+          schema:
+            type: string
+          default: [redacted]
+      deprecated: false
+      responses:
+        '200':
+          description: Passages retrieved successfully
+          content:
+            text/html:
+              schema:
+                type: string
+  /parse:
+    get:
+      description: Parse a reference
+      operationId: ParseReference
+      parameters:
+        - name: ref
+          in: query
+          description: The reference to parse
+          required: true
+          schema:
+            type: string
+          default: Romans 8:28-30
+        - name: key
+          in: query
+          description: The API key to use for the request
+          required: true
+          schema:
+            type: string
+          default: [redacted]
+      deprecated: false
+      responses:
+        '200':
+          description: Reference parsed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    ref:
+                      type: string
+                    text:
+                      type: string
+components:
+  schemas:
+    Reference:
+      type: object
+      properties:
+        ref:
+          type: string
+        text:
+          type: string
