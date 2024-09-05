@@ -24,7 +24,7 @@ paths:
           required: true
           schema:
             type: string
-          default: [redacted]
+          default: <apikey>
       deprecated: false
       responses:
         '200':
@@ -51,7 +51,7 @@ paths:
           required: true
           schema:
             type: string
-          default: [redacted]
+          default: <apikey>
       deprecated: false
       responses:
         '200':
